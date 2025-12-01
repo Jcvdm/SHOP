@@ -1,0 +1,103 @@
+# Codex Configuration for ClaimTech
+# Location: ~/.codex/config.toml
+# Copy this file to ~/.codex/config.toml and customize as needed
+
+# ============================================================================
+# CORE CODEX SETTINGS
+# ============================================================================
+
+[codex]
+# Model to use (o3, o4-mini, gpt-4o, etc.)
+model = "o3"
+
+# Approval policy for shell commands: untrusted, on-failure, never
+approval_policy = "on-failure"
+
+# Sandbox mode: read-only, workspace-write, danger-full-access
+sandbox = "workspace-write"
+
+# ============================================================================
+# MCP SERVERS - STDIO (Local Commands)
+# ============================================================================
+
+# Context7 - Developer Documentation
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+startup_timeout_sec = 10
+tool_timeout_sec = 60
+enabled = true
+
+# GitHub - Repository Management
+[mcp_servers.github]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-github"]
+[mcp_servers.github.env]
+GITHUB_PERSONAL_ACCESS_TOKEN = "your-token-here"
+startup_timeout_sec = 10
+tool_timeout_sec = 60
+enabled = true
+
+# Playwright - Browser Automation
+[mcp_servers.playwright]
+command = "npx"
+args = ["-y", "@executeautomation/playwright-mcp-server"]
+startup_timeout_sec = 15
+tool_timeout_sec = 60
+enabled = true
+
+# Chrome DevTools - Browser Debugging
+[mcp_servers.chrome_devtools]
+command = "npx"
+args = ["-y", "chrome-devtools-mcp@latest"]
+startup_timeout_sec = 10
+tool_timeout_sec = 60
+enabled = true
+
+# ============================================================================
+# MCP SERVERS - HTTP (Remote URLs)
+# ============================================================================
+
+# Supabase - Database Access
+[mcp_servers.supabase]
+url = "https://mcp.supabase.com/mcp"
+startup_timeout_sec = 10
+tool_timeout_sec = 60
+enabled = true
+
+# ============================================================================
+# FEATURES
+# ============================================================================
+
+[features]
+# Enable Rust MCP client for better performance
+rmcp_client = true
+
+# ============================================================================
+# PROFILES (Optional - for different workflows)
+# ============================================================================
+
+[profiles.development]
+model = "o3"
+approval_policy = "on-failure"
+sandbox = "workspace-write"
+
+[profiles.review]
+model = "o4-mini"
+approval_policy = "never"
+sandbox = "read-only"
+
+[profiles.production]
+model = "o3"
+approval_policy = "never"
+sandbox = "read-only"
+
+# ============================================================================
+# NOTES
+# ============================================================================
+# 1. Replace "your-token-here" with actual GitHub PAT
+# 2. Ensure all MCP servers are installed: npm install -g @openai/codex
+# 3. Test connection: codex mcp list
+# 4. View active MCPs in TUI: /mcp
+# 5. For Windows, use %USERPROFILE%\.codex\config.toml
+
